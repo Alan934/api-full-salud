@@ -1,4 +1,4 @@
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiHideProperty, ApiProperty } from '@nestjs/swagger';
 import { Expose, Type } from 'class-transformer';
 import { SerializerProfessionalDegreeDto, SerializerShortPractitionerRoleDto, SerializerLocationDto, SerializerShortAppointmentSlotDto, SerializerAppointmentDto } from '..';
 import { SerializerUserDto } from '../user/user-serializer.dto';
@@ -44,7 +44,6 @@ export class SerializerPractitionerDto extends SerializerUserDto {
   // @Type(() => SerializerShortAppointmentSlotDto)
   // practitionerAppointment: SerializerShortAppointmentSlotDto[];
 
-  // Evita ciclos Appointment -> Practitioner -> Appointment -> patient en Swagger
   @Expose()
   @ApiHideProperty()
   @Type(() => SerializerAppointmentDto)
