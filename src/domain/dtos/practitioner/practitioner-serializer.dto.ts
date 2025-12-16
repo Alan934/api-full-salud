@@ -44,7 +44,9 @@ export class SerializerPractitionerDto extends SerializerUserDto {
   // @Type(() => SerializerShortAppointmentSlotDto)
   // practitionerAppointment: SerializerShortAppointmentSlotDto[];
 
+  // Evita ciclos Appointment -> Practitioner -> Appointment -> patient en Swagger
   @Expose()
+  @ApiHideProperty()
   @Type(() => SerializerAppointmentDto)
   turns: SerializerAppointmentDto[];
 
