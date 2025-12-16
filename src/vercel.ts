@@ -51,11 +51,11 @@ export default async function handler(req: any, res: any) {
       try {
         setupSwagger(app);
       } catch (error) {
-        console.error('Swagger setup failed (vercel)', {
+        // En producción preferimos no derribar la función si Swagger falla por dependencias circulares
+        console.error('Swagger setup failed (vercel) - disabling Swagger', {
           message: (error as Error)?.message,
           stack: (error as Error)?.stack,
         });
-        throw error;
       }
     } else {
       console.log('Swagger disabled in vercel handler');
