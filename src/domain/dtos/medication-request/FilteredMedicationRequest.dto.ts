@@ -1,0 +1,43 @@
+import { ApiProperty } from '@nestjs/swagger';
+import { IsBoolean, IsOptional, IsNumber, IsString } from 'class-validator';
+import { Transform, Type } from 'class-transformer';
+
+export class FilteredMedicationRequestDto {
+  @IsOptional()
+  @IsNumber()
+  @Type(() => Number)
+  page?: number =1;
+
+  @IsOptional()
+  @IsNumber()
+  @Type(() => Number)
+  limit?: number=10;
+
+  @IsOptional()
+  @IsString()
+  @ApiProperty({ example: 'Indicado para el alivio del dolor y la fiebre. / Tomar una cápsula cada 8 horas por 7 días.' })
+  observations?: string;
+
+  @IsOptional()
+  @IsString()
+  @ApiProperty({ example: 'Infección respiratoria.' })
+  diagnosis?: string;
+
+  @IsOptional()
+  @IsString()
+  @ApiProperty({ example: '123e4567-e89b-12d3-a456-426614174000' })
+  practitionerId?: string; 
+
+  @IsOptional()
+  @IsString()
+  @ApiProperty({ example: '123e4567-e89b-12d3-a456-426614174001' })
+  patientId?: string; 
+
+  @IsOptional()
+  @IsString()
+  @ApiProperty({ example: 'Paracetamol' })
+  medication: string;
+
+}
+
+//export class UpdateMedicationRequestDto extends PartialType(CreateMedicationRequestDto) {}
