@@ -1,4 +1,4 @@
-import { ApiProperty, ApiPropertyOptional, OmitType, PartialType, ApiExtraModels } from '@nestjs/swagger';
+import { ApiProperty, ApiPropertyOptional, OmitType, PartialType, ApiExtraModels, ApiHideProperty } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 import { ValidateNested, IsOptional, IsString, IsArray } from 'class-validator';
 import { ShortBaseDto } from '../../../common/dtos';
