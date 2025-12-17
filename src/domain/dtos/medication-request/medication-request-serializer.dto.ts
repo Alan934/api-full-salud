@@ -2,7 +2,7 @@ import { ApiHideProperty, ApiProperty } from '@nestjs/swagger';
 import { ShortBaseDto } from '../../../common/dtos';
 import { Expose, Type } from 'class-transformer';
 import { SerializerUserDto } from '../user/user-serializer.dto';
-import { SerializerPatientDto } from '../patient/patient-serializer.dto';
+import { SerializerShortPatientDto } from '../patient/patient-serializer.dto';
 import { SerializerPractitionerDto } from '../practitioner/practitioner-serializer.dto';
 import { SerializerAppointmentDto } from '../appointment/appointment-serializer.dto';
 
@@ -14,9 +14,9 @@ export class SerializerMedicationRequestDto extends ShortBaseDto {
   practitioner: SerializerPractitionerDto;
 
   @Expose()
-  @Type(() => SerializerPatientDto)
+  @Type(() => SerializerShortPatientDto)
   @ApiHideProperty()
-  patient: SerializerPatientDto;
+  patient: SerializerShortPatientDto;
 
   @Expose()
   @ApiProperty({ example: 'Paracetamol' })
