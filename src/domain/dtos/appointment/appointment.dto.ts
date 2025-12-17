@@ -101,12 +101,7 @@ export class CreateAppointmentDto{
   @IsOptional()
   @ValidateNested()
   @Type(() => CreateTypeAppointmentDto)
-  @ApiProperty({
-    example: {
-      name: "Consulta General",
-      color: "#FF0000"
-    }
-  })
+  @ApiHideProperty()
   typeAppointment?: CreateTypeAppointmentDto;
 }
 
