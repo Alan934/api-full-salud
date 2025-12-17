@@ -13,7 +13,7 @@ import { Express } from 'express';
 import 'multer';
 import { Type } from 'class-transformer';
 import { ShortBaseDto } from '../../../common/dtos';
-import { ApiProperty, PartialType } from '@nestjs/swagger';
+import { ApiHideProperty, ApiProperty, PartialType } from '@nestjs/swagger';
 import { AppointmentStatus } from '../../enums';
 import { IsTime } from '../../../common/util/custom-dto-properties-decorators/validate-hour-decorator.util';
 import { IncompatableWith } from '../../../common/util/custom-dto-properties-decorators/validate-incompatible-properties.util';
@@ -63,20 +63,11 @@ export class CreateAppointmentDto{
   @ApiProperty({ example: '20a05b0e-d872-4fe5-bf9f-4b6b010b443d' })
   patientId?: string;
 
+  // Evitamos que Swagger expanda el árbol recursivo de CreatePatientDto
   @IsOptional()
   @ValidateNested()
   @Type(() => CreatePatientDto)
-  @ApiProperty({
-    example: {
-      documentType: 'dni',
-      dni: '12345678',
-      name: 'Juan',
-      lastName: 'Pérez',
-      email: 'juan.perez@gmail.com',
-      phone: '123456789',
-
-    },
-  })
+  @ApiHideProperty()
   patient?: CreatePatientDto;
 
   @IsOptional()

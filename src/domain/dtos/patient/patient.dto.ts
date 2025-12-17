@@ -12,11 +12,7 @@ export class CreatePatientWithFamilyDto {
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => CreatePatientForFamilyDto)
-  @ApiProperty({ 
-    type: () => [CreatePatientForFamilyDto], 
-    description: 'Lista de pacientes familiares a crear junto con el grupo familiar', 
-    required: false 
-  })
+  @ApiHideProperty()
   familyMembers?: CreatePatientForFamilyDto[];
 }
 
@@ -73,11 +69,7 @@ export class CreatePatientDto extends OmitType(UserDto, ['role', 'email'] as con
   @IsOptional()
   @ValidateNested()
   @Type(() => CreatePatientWithFamilyDto)
-  @ApiProperty({ 
-    type: () => CreatePatientWithFamilyDto,
-    description: 'Datos adicionales para crear familiares junto con el grupo',
-    required: false 
-  })
+  @ApiHideProperty()
   familyData?: CreatePatientWithFamilyDto;
 }
 
