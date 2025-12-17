@@ -1,9 +1,10 @@
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiHideProperty, ApiProperty } from '@nestjs/swagger';
 import { FullBaseDto } from '../../../common/dtos';
 import {
   SerializerDiagnosticDto,
   SerializerPractitionerDto,
-  SerializerPatientDto,
+  SerializerShortPractitionerDto,
+  SerializerShortPatientDto,
   SerializerAppointmentSlotDto,
   SerializerTypeAppointmentDto
 } from '..';
@@ -48,18 +49,18 @@ export class SerializerAppointmentDto extends FullBaseDto {
   })
   status: AppointmentStatus;
 
-  // Usamos DTOs simplificados para evitar ciclos
+  // Usamos DTOs simplificados para evitar ciclos Appointment -> Practitioner -> Appointment
   @Expose()
-  @Type(() => SerializerPatientDto)
-  patient?: SerializerPatientDto;
+  @Type(() => SerializerShortPatientDto)
+  patient?: SerializerShortPatientDto;
 
   @Expose()
   @Type(() => SerializerDiagnosticDto)
   diagnostic?: SerializerDiagnosticDto;
 
   @Expose()
-  @Type(() => SerializerPractitionerDto)
-  practitioner: SerializerPractitionerDto; 
+  @Type(() => SerializerShortPractitionerDto)
+  practitioner: SerializerShortPractitionerDto; 
 
   @Expose()
   @ApiProperty({ type: String, description: 'ID del practitioner' })
