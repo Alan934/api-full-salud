@@ -2,11 +2,10 @@ import { ApiHideProperty, ApiProperty } from '@nestjs/swagger';
 import { FullBaseDto } from '../../../common/dtos';
 import {
   OptimizeSerializerAppointmentSlotDto,
-  SecondOptimizeSerializerPatientDto,
   SerializerLocationDto,
   SerializerAppointmentSlotDto,
   SerializerSocialWorkEnrollmentDto,
-  ThirdOptimizeSerializerPatientDto,
+  SerializerShortPatientDto,
 } from '..';
 import { Expose, Type } from 'class-transformer';
 import { Role, AppointmentStatus } from '../../enums';
@@ -30,8 +29,8 @@ export class OptimizeAppointmentDto extends FullBaseDto {
   status: AppointmentStatus;
 
   @Expose()
-  @Type(() => SecondOptimizeSerializerPatientDto)
-  patient?: SecondOptimizeSerializerPatientDto;
+  @Type(() => SerializerShortPatientDto)
+  patient?: SerializerShortPatientDto;
 
 }
 
@@ -54,7 +53,7 @@ export class SecondOptimizeAppointmentDto {
   practitioner?: SecondOptimizePractitionerDto;
 
   @Expose()
-  @Type(() => ThirdOptimizeSerializerPatientDto)
+  @Type(() => SerializerShortPatientDto)
   @ApiHideProperty()
-  patient: ThirdOptimizeSerializerPatientDto;
+  patient: SerializerShortPatientDto;
 }
