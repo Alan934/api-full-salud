@@ -69,7 +69,7 @@ export class Appointment extends Base {
   
   @ManyToOne(() => Practitioner, { eager: true, nullable: true })
   @JoinColumn({ name: 'practitioner_id' })
-  @ApiProperty({ type: () => Practitioner })
+  @ApiHideProperty()
   practitioner: Practitioner;
 
   @Column({
@@ -104,7 +104,7 @@ export class Appointment extends Base {
     nullable: true
   })
   @JoinColumn({ name: 'type_appointment_id' })
-  @ApiProperty({ type: () => TypeAppointment })
+  @ApiHideProperty()
   typeAppointment?: TypeAppointment;
   
   @ManyToOne(() => AppointmentSlot, { nullable: true })

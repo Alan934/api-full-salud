@@ -3,7 +3,7 @@ import { Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne } from 'type
 import { Appointment } from './appointment.entity';
 import { Practitioner } from './practitioner.entity';
 import { TypeAppointmentAvailability } from './type-appointment-availability.entity';
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiHideProperty, ApiProperty } from '@nestjs/swagger';
 
 @Entity('type_appointment')
 export class TypeAppointment extends Base {
@@ -17,7 +17,7 @@ export class TypeAppointment extends Base {
   instructions: string;
 
   @OneToMany(() => Appointment, (appointment) => appointment.typeAppointment)
-  @ApiProperty({ type: () => [Appointment] })
+  @ApiHideProperty()
   appointments: Appointment[];
 
   @Column({ name: 'practitioner_id', type: 'uuid', nullable: true })
@@ -25,10 +25,10 @@ export class TypeAppointment extends Base {
 
   @ManyToOne(() => Practitioner, { nullable: true })
   @JoinColumn({ name: 'practitioner_id' })
-  @ApiProperty({ type: () => Practitioner })
+  @ApiHideProperty()
   practitioner?: Practitioner;
 
   @OneToMany(() => TypeAppointmentAvailability, (availability) => availability.typeAppointment, )
-  @ApiProperty({ type: () => [TypeAppointmentAvailability] })
+  @ApiHideProperty()
   availabilities?: TypeAppointmentAvailability[];
 } 

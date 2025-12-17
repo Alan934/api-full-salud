@@ -2,7 +2,7 @@ import { Base } from "../../common/bases/base.entity";
 import { Column, Entity, ManyToOne } from "typeorm";
 import { TypeAppointment } from "./type-appointment.entity";
 import { Day } from "../enums";
-import { ApiProperty } from "@nestjs/swagger";
+import { ApiHideProperty, ApiProperty } from "@nestjs/swagger";
 
 @Entity('type_appointment_availability')
 export class TypeAppointmentAvailability extends Base {
@@ -30,6 +30,7 @@ export class TypeAppointmentAvailability extends Base {
     endTime: string;
 
     @ManyToOne(() => TypeAppointment, (typeAppointment) => typeAppointment.availabilities)
+    @ApiHideProperty()
     typeAppointment: TypeAppointment;
 
     @Column({ type: 'uuid' })

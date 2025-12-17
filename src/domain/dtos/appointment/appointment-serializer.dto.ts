@@ -6,7 +6,8 @@ import {
   SerializerShortPractitionerDto,
   SerializerShortPatientDto,
   SerializerAppointmentSlotDto,
-  SerializerTypeAppointmentDto
+  SerializerTypeAppointmentDto,
+  SerializerTypeAppointmentAvailabilityDto,
 } from '..';
 import { Expose, Type } from 'class-transformer';
 import { Role, AppointmentStatus } from '../../enums';
@@ -71,6 +72,7 @@ export class SerializerAppointmentDto extends FullBaseDto {
   patientAppointment: SerializerAppointmentSlotDto[];
 
   @Expose()
+  // Evita ciclo TypeAppointment <-> Availability en Swagger
   @Type(() => SerializerTypeAppointmentDto)
   typeAppointment?: SerializerTypeAppointmentDto;
 }
